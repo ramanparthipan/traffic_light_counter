@@ -31,12 +31,12 @@ begin
 		u1: counter 
 		port map(clk=>clk, slow_clk=>tick);
 		
-		process (clk, reset)
+		process (tick, reset)
 			variable count : INTEGER;
 		begin
 			if reset = '0' then
 				state <= G;
-			elsif rising_edge(clk) then
+			elsif rising_edge(tick) then -- using this means the request button needs to be pushed for ~1s for it to be registered.
 				case state is
 					when G =>
 						if request = '0' then
@@ -44,21 +44,21 @@ begin
 							count := 0;
 						end if;
 					when Y =>
-						if count = 250000000 then
+						if count = 5 then
 							state <= R;
 							count := 0;
 						else
 							count := count + 1;
 						end if;
 					when R => 
-						if count = 500000000 then 
+						if count = 10 then 
 							state <= W;
 							count := 0;
 						else
 							count := count + 1;
 						end if;
 					when W => -- wait state to prevent traffic clogging
-					 if count = 200000000 then 
+					 if count = 10 then 
 							state <= G;
 							count := 0;
 						else

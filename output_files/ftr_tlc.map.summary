@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Tue Feb 25 10:19:51 2025
+Analysis & Synthesis Status : Successful - Tue Feb 25 10:43:31 2025
 Quartus Prime Version : 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 Revision Name : ftr_tlc
 Top-level Entity Name : ftr_tlc
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 36
+Total registers : 62
 Total pins : 22
 Total virtual pins : 0
 Total block memory bits : 0

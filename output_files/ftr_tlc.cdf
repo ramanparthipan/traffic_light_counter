@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("C:/Users/rp732/3B2_rp732/ftr_tlc/output_files/") File("ftr_tlc.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("C:/Users/rp732/3B2_rp732/traffic_light_counter/output_files/") File("ftr_tlc.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

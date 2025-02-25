@@ -24,7 +24,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "clk",
+					"name" : "request",
 					"strict" : false
 				},
 				{
@@ -32,7 +32,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "request",
+					"name" : "clk",
 					"strict" : false
 				}
 			]
