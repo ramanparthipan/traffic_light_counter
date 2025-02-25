@@ -1,0 +1,68 @@
+Library IEEE;
+USE ieee.std_logic_1164.all;
+
+entity tlc is
+	port(
+		clk: IN std_logic;
+		request: IN std_logic;
+		reset: IN std_logic;
+		output: OUT std_logic_vector(4 downto 0)
+		);
+end tlc;
+
+architecture tlc_arch of tlc is
+	type state_type is (G, Y, R, W);
+	signal state: state_type;
+	begin
+		process (clk, reset)
+			variable count : INTEGER;
+		begin
+			if reset = '0' then
+				state <= G;
+			elsif rising_edge(clk) then
+				case state is
+					when G =>
+						if request = '0' then
+							state <= Y;
+							count := 0;
+						end if;
+					when Y =>
+						if count = 250000000 then
+							state <= R;
+							count := 0;
+						else
+							count := count + 1;
+						end if;
+					when R => 
+						if count = 500000000 then 
+							state <= W;
+							count := 0;
+						else
+							count := count + 1;
+						end if;
+					when W => -- wait state to prevent traffic clogging
+					 if count = 200000000 then 
+							state <= G;
+							count := 0;
+						else
+							count := count + 1;
+						end if;
+				end case;
+			end if;
+		end process;
+	
+	process (state)
+	begin
+		case state is
+			when G => 
+				output <= "10001";
+			when Y =>
+				output <= "10010";
+			when R =>
+				output <= "01100";
+			when W =>
+				output <= "10001"; --same as green
+		end case;
+	end process;
+	
+end tlc_arch;
